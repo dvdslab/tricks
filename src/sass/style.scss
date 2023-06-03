@@ -1,0 +1,265 @@
+:root {
+  --color1: #bd38;
+  --color2: #f04;
+}
+
+* {
+  margin: 0;
+}
+
+.box1 {
+  height: 100vh;
+  background-color: #314;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@property --color1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: var(--color2);
+}
+
+@property --color2 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: var(--color1);
+}
+
+.button {
+  // --color1: #bd38;
+  // --color2: #f04;
+  background-image: linear-gradient(56deg, var(--color1), var(--color2));
+  margin-top: 6px;
+  padding: 20px 40px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: --color1 2500ms, --color2 1000ms;
+}
+
+.button:hover {
+  --color1: var(--color2);
+  --color2: var(--color1);
+  // background-image: linear-gradient(65deg, var(--color2), var(--color1));
+  // transform: translate(1.75rem, 1.75rem);
+  // transition: transform 400ms;
+}
+
+.clicked {
+  animation: clicked 2500ms infinite;
+}
+
+@keyframes clicked {
+  0% {
+    background-color: #443;
+  }
+  20% {
+    background-color: #363;
+  }
+  40% {
+    background-color: #989;
+  }
+  60% {
+    background-color: #823;
+  }
+  80% {
+    background-color: #028;
+  }
+  100% {
+    background-color: #635;
+  }
+}
+
+.box2 {
+  background-color: #000;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.sqr {
+  width: 120px;
+  height: 120px;
+  background: conic-gradient(
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet,
+    red
+  );
+  border-radius: 5px;
+  rotate: 0deg;
+  transition: rotate 3s cubic-bezier(0.5, 1, 1, 1);
+}
+
+.sqr:hover {
+  animation: spin 500ms infinite linear;
+  rotate: -720deg;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 10px;
+  aspect-ratio: 1;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.dot {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dot.dance {
+    animation: rise 2000ms infinite alternate;
+  }
+}
+
+@keyframes rise {
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+@for $i from 1 through 15 {
+  .dot:nth-child(#{$i}) {
+    animation-delay: 400ms * $i;
+  }
+}
+
+.type {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #36442b;
+}
+
+.type p {
+  color: #fff;
+  font-family: "source code pro", monospace;
+  font-size: clamp(1rem, 3vw + 1rem, 4rem);
+  position: relative;
+  width: max-content;
+}
+
+// .type p::before {
+//   content: open-quote;
+// }
+
+// .type p::after {
+//   content: close-quote;
+// }
+
+.type p::before,
+.type p::after {
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.type p::before {
+  background-color: #36442b;
+  animation: type 7.4s steps(22) 2s infinite;
+}
+
+.type p::after {
+  width: 0.125em;
+  background-color: #fff;
+  animation: type 7.4s steps(22) 2s infinite, blink 1s infinite;
+}
+
+@keyframes type {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#typing {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #44637c;
+  color: white;
+  font-family: "source code pro", monospace;
+  font-size: clamp(1rem, 3vw + 1rem, 4rem);
+}
+
+#typing2 {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: "source code pro", monospace;
+  font-size: clamp(1rem, 3vw + 1rem, 4rem);
+  background: linear-gradient(45deg, #4c1e97, #4e3d61e5);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text {
+  position: relative;
+  color: #29c086;
+  font-weight: bold;
+}
+
+// .snd-text {
+//   background-color: blue;
+// }
